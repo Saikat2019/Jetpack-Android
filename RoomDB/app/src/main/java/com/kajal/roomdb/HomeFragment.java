@@ -19,6 +19,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private Button btnAdd;
     private Button btnRead;
     private Button btnDelete;
+    private Button btnUpdate;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -30,12 +31,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         btnAdd = view.findViewById(R.id.buttonAdd);
         btnAdd.setOnClickListener(this);
         btnRead = view.findViewById(R.id.buttonView);
         btnRead.setOnClickListener(this);
         btnDelete = view.findViewById(R.id.buttonDelete);
         btnDelete.setOnClickListener(this);
+        btnUpdate = view.findViewById(R.id.buttonUpdate);
+        btnUpdate.setOnClickListener(this);
 
         return view;
     }
@@ -61,6 +65,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             case R.id.buttonDelete :
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container,new DeleteUserFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+
+            case R.id.buttonUpdate :
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container,new UpdateFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
